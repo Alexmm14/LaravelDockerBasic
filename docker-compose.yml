@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  laravel-app:
+    build:
+      context: .
+      dockerfile: Dockerfile-laravel
+    container_name: laravel-container
+    networks:
+      mi_red:
+        ipv4_address: 172.25.0.2
+    volumes:
+      - ./example-app:/var/www/html/Laravel-docker/example-app
+
+  postgres-db:
+    image: postgres
+    container_name: postgres-container
+    environment:
+      POSTGRES_DB: laravel
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: "Admin2024#"
+    networks:
+      mi_red:
+        ipv4_address: 172.25.0.3
+
+networks:
+  mi_red:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.25.0.0/16
