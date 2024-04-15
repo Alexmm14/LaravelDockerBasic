@@ -14,8 +14,8 @@ class CategoriasController extends Controller
      */
     public function index()
     {
-        //
-        return view('Categories.index');
+        $categorias = Categoria::all();
+        return view('Categories.index', ['categorias' => $categorias]);
     }
 
     /**
@@ -43,7 +43,7 @@ class CategoriasController extends Controller
 	    $categorias -> UsuarioCreador = "Alejandro";
 	    $categorias ->save();
 
-
+        return redirect()->route('categorias.index');
     }
 
     /**
