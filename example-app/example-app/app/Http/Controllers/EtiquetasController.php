@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Categoria;
+use App\Models\Etiquetas;
 
-class CategoriasController extends Controller
+class EtiquetasController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class CategoriasController extends Controller
      */
     public function index()
     {
-        $categorias = Categoria::all();
-        return view('Categories.index', ['categorias' => $categorias]);
+        $etiquetas = Etiquetas::all();
+        return view('etiquetas.index', ['Etiquetas'=>$etiquetas]);
     }
 
     /**
@@ -25,7 +25,7 @@ class CategoriasController extends Controller
      */
     public function create()
     {
-        return view('Categories.createcategory');
+        return view('etiquetas.createEtiqueta');
     }
 
     /**
@@ -36,14 +36,14 @@ class CategoriasController extends Controller
      */
     public function store(Request $request)
     {
-	    $categorias = new Categoria();
-	    $categorias -> nombreCategoria = $request["NombreCategoria"];
-	    $categorias -> Descripcion = $request["Descripcion"];
-	    $categorias -> FechaCreacion = date("Y-m-d H:i:s");
-	    $categorias -> UsuarioCreador = "Alejandro";
-	    $categorias ->save();
+        $etiquetas = new Etiquetas();
+	    $etiquetas -> nombreEtiqueta = $request["nombreEtiqueta"];
+	    $etiquetas -> descripcion = $request["Descripcion"];
+	    $etiquetas -> FechaCreacion = date("Y-m-d H:i:s");
+	    $etiquetas -> UsuarioCreador = "Alejandro";
+	    $etiquetas ->save();
 
-        return redirect()->route('categorias.index');
+        return redirect()->route('etiquetas.index');
     }
 
     /**
@@ -65,8 +65,7 @@ class CategoriasController extends Controller
      */
     public function edit($id)
     {
-        $categoria = Categoria::findOrFail($id); // Obtén la etiqueta según el ID proporcionado
-        return view('Categories.editcategory', compact('categoria')); // Pasa la etiqueta a la vista
+        //
     }
 
     /**
@@ -78,10 +77,7 @@ class CategoriasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $categoriasRequest = request()->except(['_token', '_method']);
-        Categoria::where('id', '=', $id)->update($categoriasRequest);
-        return redirect()->route('categorias.index');
-        
+        //
     }
 
     /**
@@ -92,9 +88,6 @@ class CategoriasController extends Controller
      */
     public function destroy($id)
     {
-        $categoria = Categoria::findOrFail($id);
-        $categoria->delete();
-
-    return redirect()->route('categorias.index')->with('success', 'Etiqueta eliminada correctamente');
+        //
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Label;
 
 class EtiquetasController extends Controller
 {
@@ -13,7 +14,8 @@ class EtiquetasController extends Controller
      */
     public function index()
     {
-        //
+        $Etiquetas = Label::orderBy('created_at', 'desc')->get();
+        return view('Labels.index', ['Etiquetas' => $Etiquetas]);
     }
 
     /**
@@ -23,7 +25,7 @@ class EtiquetasController extends Controller
      */
     public function create()
     {
-        //
+        return view('Labels.createLabel');
     }
 
     /**
@@ -34,7 +36,16 @@ class EtiquetasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $Etiquetas = new Label;
+        $Etiquetas -> nombreEtiquetas = $request["NombreEtiquetas"];
+        $Etiquetas -> descripcion = $request["Descripcion"];
+        $Etiquetas -> fechaCreacion = date("Y-m-d H:i:s");
+        $Etiquetas -> usuarioCreador = 'Alejandro';
+        $Etiquetas->save();
+
+        return redirect()->route('etiquetas.index');
+        
+
     }
 
     /**
@@ -56,7 +67,8 @@ class EtiquetasController extends Controller
      */
     public function edit($id)
     {
-        //
+        $etiqueta = Label::findOrFail($id); // Obtén la etiqueta según el ID proporcionado
+        return view('Labels.editLabel', compact('etiqueta')); // Pasa la etiqueta a la vista
     }
 
     /**
@@ -68,7 +80,9 @@ class EtiquetasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $EtiquetaRequest = request()->except(['_token', '_method']);
+        Label::where('id', '=', $id)->update($EtiquetaRequest);
+        return redirect()->route('etiquetas.index');
     }
 
     /**
@@ -79,6 +93,9 @@ class EtiquetasController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $etiqueta = Label::findOrFail($id);
+        $etiqueta->delete();
+
+    return redirect()->route('etiquetas.index')->with('success', 'Etiqueta eliminada correctamente');
     }
 }

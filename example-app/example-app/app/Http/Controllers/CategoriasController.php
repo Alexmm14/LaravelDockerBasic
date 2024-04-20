@@ -63,10 +63,10 @@ class CategoriasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit()
     {
-        $categoria = Categoria::findOrFail($id); // Obtén la etiqueta según el ID proporcionado
-        return view('Categories.editcategory', compact('categoria')); // Pasa la etiqueta a la vista
+        
+        return view('Categories.editcategory');
     }
 
     /**
@@ -92,9 +92,7 @@ class CategoriasController extends Controller
      */
     public function destroy($id)
     {
-        $categoria = Categoria::findOrFail($id);
-        $categoria->delete();
-
-    return redirect()->route('categorias.index')->with('success', 'Etiqueta eliminada correctamente');
+        Categoria::destroy($id);
+        return redirect()->route('categorias.index');
     }
 }
