@@ -48,7 +48,11 @@ EXPOSE 80
 
 
 # Comando para iniciar apache y que se mantenga abierto el contenedor
-CMD systemctl start apache2 \
+CMD cd /var/www/html/Laravel-docker/example-app \
+    && composer install \
     && chown -R www-data:www-data /var/www/html/Laravel-docker/example-app/storage \
     && chown -R www-data:www-data /var/www/html/Laravel-docker/example-app/bootstrap/cache \
+    && cd /var/www/html/Laravel-docker/example-app/ \
+    && php artisan key:generate \
+    && systemctl start apache2 \
     && tail -f /dev/null
