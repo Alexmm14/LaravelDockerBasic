@@ -15,7 +15,7 @@ Pasos para iniciar el proyecto:
 
 2- CAMBIA EL NOMBRE DE .env.example POR .env EN TU CARPETA DE EXAMPLE-APP
 
-6- Ejecutas el siguente comando:
+6- Ejecutas el siguente comando (En la raiz de este repositorio):
 
     docker-compose up -d
 
