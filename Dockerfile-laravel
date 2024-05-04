@@ -20,16 +20,8 @@ RUN apt-get update \
     && service apache2 restart \
     && rm -rf /var/lib/apt/lists/*
 
-
-
 # Clona el proyecto desde GitHub
-RUN  cd var/www/html 
-    
-
 WORKDIR /var/www/html/Laravel-docker
-
-
-
 COPY mi-sitio.conf /etc/apache2/sites-available
 COPY apache2.conf /etc/apache2
 
@@ -42,17 +34,22 @@ RUN a2dissite 000-default.conf \
     #Aplica las configuraciones para mi-sitio
     && a2ensite mi-sitio.conf \
     && systemctl restart apache2  
-    
+
 # Expone el puerto 80 (o el puerto que necesites)
 EXPOSE 80
 
+# Cambiar al usuario www-data y luego ejecutar composer install
+USER www-data
+RUN cd /var/www/html/Laravel-docker/example-app \
+    && composer install
 
-# Comando para iniciar apache y que se mantenga abierto el contenedor
-CMD cd /var/www/html/Laravel-docker/example-app \
-    && composer install \
-    && chown -R www-data:www-data /var/www/html/Laravel-docker/example-app/storage \
+# Cambiar nuevamente al usuario root para ejecutar los comandos finales
+USER root
+RUN chown -R www-data:www-data /var/www/html/Laravel-docker/example-app/storage \
     && chown -R www-data:www-data /var/www/html/Laravel-docker/example-app/bootstrap/cache \
     && cd /var/www/html/Laravel-docker/example-app/ \
-    && php artisan key:generate \
-    && systemctl start apache2 \
-    && tail -f /dev/null
+    && php artisan key:generate
+
+# Comando para iniciar apache y que se mantenga abierto el contenedor
+CMD systemctl start apache2 && tail -f /dev/null
+
