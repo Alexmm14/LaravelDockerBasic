@@ -31,7 +31,7 @@ http://172.25.0.2/
 
 
 O con el siguiente enlace (windows):
-http://localhost/
+http://127.0.0.1/
 
 Para editar los archivos de proyecto como crear nuevas rutas, editar migraciones. Abres la carpeta 'proyectoSitios' con tu IDE de preferencia:)
 
