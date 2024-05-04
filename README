@@ -25,9 +25,13 @@ Con esta IP se podrá visualizar el proyecto en tu navegador
 
 Listo, ahora puedes ir al navegador a visualizar si esta corriendo apache y laravel
 
-Con la siguiente ip:
+Con la siguiente ip (linux):
 
 http://172.25.0.2/
+
+
+O con el siguiente enlace (windows):
+http://localhost/
 
 Para editar los archivos de proyecto como crear nuevas rutas, editar migraciones. Abres la carpeta 'proyectoSitios' con tu IDE de preferencia:)
 
