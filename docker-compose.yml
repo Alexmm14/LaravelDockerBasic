@@ -9,6 +9,8 @@ services:
     networks:
       mi_red:
         ipv4_address: 172.25.0.2
+    ports:
+      - "80:80"
     volumes:
       - ./example-app:/var/www/html/Laravel-docker/example-app
 
