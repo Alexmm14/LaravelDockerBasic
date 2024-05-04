@@ -6,29 +6,23 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 # Actualiza el sistema e instala las dependencias necesarias
 RUN apt-get update \
-    && apt-get install -y php \
+    && apt-get install -y php libapache2-mod-php \
     && apt-get install -y composer \
+    && apt-get install -y systemctl \
     && apt-get install -y vim \
-    && apt-get install -y apache2 libapache2-mod-php \
+    && apt-get install -y apache2 \
     && apt-get install -y php-xml \
     && apt-get install -y git \
-    && apt-get install -y systemctl \
-    && apt-get install -y php-pgsql \
     && apt install -y php-curl \
-    && a2enmod php8.1 \
+    && apt-get install -y php-pgsql \
     && apt-get clean \
     && service apache2 restart \
     && rm -rf /var/lib/apt/lists/*
 
-
-
 # Clona el proyecto desde GitHub
 RUN  cd var/www/html 
-    
 
 WORKDIR /var/www/html/Laravel-docker
-
-
 
 COPY mi-sitio.conf /etc/apache2/sites-available
 COPY apache2.conf /etc/apache2
@@ -45,7 +39,6 @@ RUN a2dissite 000-default.conf \
     
 # Expone el puerto 80 (o el puerto que necesites)
 EXPOSE 80
-
 
 # Comando para iniciar apache y que se mantenga abierto el contenedor
 CMD cd /var/www/html/Laravel-docker/example-app \
