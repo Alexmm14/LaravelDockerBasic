@@ -1,26 +1,34 @@
-Repositorio de laravel "básico"
-Deben descargar docker
-En caso de windows deben de descargar docker desktop
-En linux solo con docker
+# Laverl-Docker
 
 
-Una vez tengan docker instalado debe ejecutar los siguientes comando
-
-ANTES DE LEVANTAR LOS CONTENEDORES DEBEN CAMBIARLE EL NOMBRE AL ARCHIVO:
-
-        .env.example por .env
+Este es proyecto escolar desarrollado en laravel
 
 
-1.- Levantar los contenedores:
+Para poder empezar a realizar sus actividades, primero es necesario descargar docker.
+Ya que se utilizará para conveniencia de todos. Para que no descarguen una maquina virtual o algo por el estilo.
+
+Los pasos están orientados a terminal, deberá investigar como hacer todo esto si estas usando el entorno gráfico de docker
+
+Pasos para iniciar el proyecto:
+
+1- Descargar docker, en linux me pidio instalar docker compose. No se si pase en windows
+
+2- CAMBIA EL NOMBRE DE .env.example POR .env EN TU CARPETA DE EXAMPLE-APP
+
+6- Ejecutas el siguente comando:
 
     docker-compose up -d
 
-2. Para ejecutar comandos de artisan deben hacerlo dentro del contenedor con el siguiente comando:
 
-    docker exec -ti laravel-container bash
+En teoria te tendría que dar la ip: 172.25.0.2
+Con esta IP se podrá visualizar el proyecto en tu navegador
 
-3. Para salir de la terminal del contenedor solo deben poner:
+Listo, ahora puedes ir al navegador a visualizar si esta corriendo apache y laravel
 
-    exit
+Con la siguiente ip:
 
-Otra opción es CTRL+D
+http://172.25.0.2/
+
+Para editar los archivos de proyecto como crear nuevas rutas, editar migraciones. Abres la carpeta 'proyectoSitios' con tu IDE de preferencia:)
+
+
