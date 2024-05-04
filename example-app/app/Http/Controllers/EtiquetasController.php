@@ -37,15 +37,13 @@ class EtiquetasController extends Controller
     public function store(Request $request)
     {
         $Etiquetas = new Label;
-        $Etiquetas -> nombreEtiquetas = $request["NombreEtiquetas"];
-        $Etiquetas -> descripcion = $request["Descripcion"];
-        $Etiquetas -> fechaCreacion = date("Y-m-d H:i:s");
-        $Etiquetas -> usuarioCreador = 'Alejandro';
+        $Etiquetas->nombreEtiquetas = $request["NombreEtiquetas"];
+        $Etiquetas->descripcion = $request["Descripcion"];
+        $Etiquetas->fechaCreacion = date("Y-m-d H:i:s");
+        $Etiquetas->usuarioCreador = 'Alejandro';
         $Etiquetas->save();
 
         return redirect()->route('etiquetas.index');
-        
-
     }
 
     /**
@@ -96,6 +94,6 @@ class EtiquetasController extends Controller
         $etiqueta = Label::findOrFail($id);
         $etiqueta->delete();
 
-    return redirect()->route('etiquetas.index')->with('success', 'Etiqueta eliminada correctamente');
+        return redirect()->route('etiquetas.index')->with('success', 'Etiqueta eliminada correctamente');
     }
 }

@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoriasController;
 use App\Http\Controllers\EtiquetasController;
+use App\Http\Controllers\PostsController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -21,3 +23,5 @@ Route::get('/', function () {
 
 Route::resource('/categorias', CategoriasController::class);
 Route::resource('/etiquetas', EtiquetasController::class);
+Route::resource('/post', PostsController::class);
+

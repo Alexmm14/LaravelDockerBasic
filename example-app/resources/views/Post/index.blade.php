@@ -1,55 +1,41 @@
 @extends('layouts.templateBase')
 
 
-@section('title', 'Categorias')
+@section('title', 'Post')
 
 @section('btn')
-<a href="{{ url('/categorias/create') }}" class="btn btn-dark ">Nueva</a>
+    <a href="{{ url('/post/create') }}" class="btn btn-dark ">Nueva</a>
 @endsection
 
 @section('content')
-    <div class="container-fluid">
-        <div class="col-12 d-flex  justify-content-center align-content-center ">
-            <h2>Categorias</h2>
-        </div>
-        <div class="container ">
-            <table class="table table-dark  ">
-                <thead class="">
-                    <tr>
-                        <th scope="col">Nombre </th>
-                        <th scope="col">Descripción</th>
-                        <th scope="col">Creador</th>
-                        <th scope="col" class="d-flex justify-content-center  align-content-center ">Opciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($categorias as $categorias)
-                        <tr>
-                            <td>{{ $categorias->nombreCategoria}}</td>
-                            <td>{{ $categorias->Descripcion}}</td>
-                            <td>{{ $categorias->UsuarioCreador}}</td>
-                            <td>
-                                <div class="container-fluid row">
-                                    <div class="col-6 d-flex  justify-content-center  align-content-center">
-                                        <a href="{{url('/categorias/'.$categorias->id.'/edit')}}"
-                                            class="btn btn-warning  ">Editar</a>
-                                    </div>
-                                    <div class="col-6 ">
-                                        <form action="{{ url('/categorias/'. $categorias->id) }}" method="post">
-                                            {{ csrf_field() }}
-                                            {{ method_field('DELETE') }}
-                                            <button type="submit" class="btn btn-danger"
-                                                onclick="return confirm('¿Seguro que desear eliminarlo?');">Eliminar</button>
-                                        </form>
-                                    </div>
-
+    <div class="container mt-5 ">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            @foreach ($posts as $post)
+                <div class="col">
+                    <div class="card shadow-sm">
+                        <img src="{{ asset('img/' . $post->post_imagen) }}" class="card-img-top img-fluid" alt="..." style="height:75%;" >
+                        <div class="card-body">
+                            <p class="card-text">{{ $post->post_contenido }}</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted">{{ $post->nombreCategoria }}</small>
+                                <small class="text-muted">{{ $post->nombreLabel }}</small>
+                            </div>
+                            <div class="d-flex justify-content-center  align-items-center">
+                                <div class="btn-group">
+                                    <a href="{{ url('/post/' . $post->id . '/edit') }}" class="btn btn-sm btn-outline-secondary"><i class="bi bi-pencil-fill"></i></a>
+                                    <form action="{{ url('/post/'. $post->id) }}" method="post">
+                                        {{ csrf_field() }}
+                                        {{ method_field('DELETE') }}
+                                        <button type="submit" class="btn btn-sm btn-outline-secondary"
+                                            onclick="return confirm('¿Seguro que desear eliminarlo?');"><i class="bi bi-trash"></i></button>
+                                    </form>
                                 </div>
-                            </td>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
 
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
         </div>
     </div>
 @endsection

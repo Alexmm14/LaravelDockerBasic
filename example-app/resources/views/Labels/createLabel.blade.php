@@ -25,7 +25,7 @@
             </form>
 
             <div>
-                <a class ="" href="{{ url('Etiquetas') }}"> Regresar</a>
+                <a class ="" href="{{ url('etiquetas') }}"> Regresar</a>
             </div>
         </div>
     </div>
