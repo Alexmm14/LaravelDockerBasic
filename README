@@ -1,0 +1,26 @@
+Repositorio de laravel "básico"
+Deben descargar docker
+En caso de windows deben de descargar docker desktop
+En linux solo con docker
+
+
+Una vez tengan docker instalado debe ejecutar los siguientes comando
+
+ANTES DE LEVANTAR LOS CONTENEDORES DEBEN CAMBIARLE EL NOMBRE AL ARCHIVO:
+
+    .env.example por .env
+
+
+1.- Levantar los contenedores
+
+    docker-compose up -d
+
+2. Para ejecutar comandos de artisan deben hacerlo dentro del contenedor con el siguiente comando
+
+    docker exec -ti laravel-container bash
+
+3. Para salir de la terminal del contenedor solo deben poner:
+
+    exit
+
+Otra opción es CTRL+D
