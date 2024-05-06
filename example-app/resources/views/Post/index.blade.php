@@ -19,6 +19,7 @@
                             <div class="d-flex justify-content-between align-items-center">
                                 <small class="text-muted">{{ $post->nombreCategoria }}</small>
                                 <small class="text-muted">{{ $post->nombreLabel }}</small>
+                                <small class="text-muted">{{ \Carbon\Carbon::parse($post->updated_at)->format('d/m/Y') }}</small>
                             </div>
                             <div class="d-flex justify-content-center  align-items-center">
                                 <div class="btn-group">
