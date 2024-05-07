@@ -16,14 +16,11 @@
         <div class="d-flex" id="wrapper">
             <!-- Sidebar-->
             <div class="border-end bg-white" id="sidebar-wrapper">
-                <div class="sidebar-heading border-bottom bg-light">Start Bootstrap</div>
+                <div class="sidebar-heading border-bottom bg-light">HOLA MUNDO</div>
                 <div class="list-group list-group-flush">
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{url('/etiquetas')}}">Etiquetas</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{url('/categorias')}}">Categorias</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{{url('/post')}}">Post</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Events</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Profile</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Status</a>
                 </div>
             </div>
             <!-- Page content wrapper-->

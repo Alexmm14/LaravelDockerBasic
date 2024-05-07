@@ -18,7 +18,7 @@ use App\Http\Controllers\PostsController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/post');
 });
 
 Route::resource('/categorias', CategoriasController::class);
