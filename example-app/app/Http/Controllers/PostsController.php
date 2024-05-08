@@ -63,8 +63,6 @@ class PostsController extends Controller
         $post->categoria_id = $request["categoria_id"];
         $post->label_id = $request["label_id"];
         $post->save();
-
-        echo "Se guardo";
         return redirect()->route('post.index');
     }
 
